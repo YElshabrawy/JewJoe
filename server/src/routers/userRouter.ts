@@ -30,12 +30,12 @@ usersRouter.get('/:id', async (req: Request, res: Response) => {
         return res.status(200).json(result);
         //@ts-ignore
     } catch (err: Error) {
-        return res.status(404).json({ message: err.message });
+        return res.status(400).json({ message: err.message });
     }
 });
 
 // User payment
-usersRouter.get('/:id/user_payments', async (req: Request, res: Response) => {
+usersRouter.get('/:id/user_payment', async (req: Request, res: Response) => {
     try {
         const id = parseInt(req.params.id);
         const result = await userModel.getUserPayments(id);
@@ -159,7 +159,7 @@ usersRouter.patch('/:id', async (req: Request, res: Response) => {
     try {
         const oldUser = await userModel.getUser(parseInt(req.params.id));
         if (!oldUser) {
-            throw new Error(`Could not find user`);
+            return res.status(404).json({ message: `Could not find user` });
         }
         let newUser = { ...oldUser };
         Object.keys(oldUser).forEach((key) => {
@@ -175,10 +175,50 @@ usersRouter.patch('/:id', async (req: Request, res: Response) => {
             }
         });
         const result = await userModel.modifyUser(newUser);
-        res.status(200).json(result);
+        return res.status(200).json(result);
         //@ts-ignore
     } catch (err: Error) {
-        res.status(400).json({ message: err.message });
+        return res.status(400).json({ message: err.message });
+    }
+});
+
+usersRouter.patch('/user_address/:id', async (req: Request, res: Response) => {
+    try {
+        const oldAddress = await userModel.getAddress(parseInt(req.params.id));
+        if (!oldAddress) {
+            return res.status(404).json({ message: `Could not find address` });
+        }
+        let newAddress = { ...oldAddress };
+        Object.keys(oldAddress).forEach((key) => {
+            if (req.body[key] && key !== 'id' && key !== 'user_id') {
+                newAddress = { ...newAddress, [key]: req.body[key] };
+            }
+        });
+        const result = await userModel.modifyUserAddress(newAddress);
+        return res.status(200).json(result);
+        //@ts-ignore
+    } catch (err: Error) {
+        return res.status(400).json({ message: err.message });
+    }
+});
+
+usersRouter.patch('/user_payment/:id', async (req: Request, res: Response) => {
+    try {
+        const oldPayment = await userModel.getPayment(parseInt(req.params.id));
+        if (!oldPayment) {
+            return res.status(404).json({ message: `Could not find payment` });
+        }
+        let newPayment = { ...oldPayment };
+        Object.keys(oldPayment).forEach((key) => {
+            if (req.body[key] && key !== 'id' && key !== 'user_id') {
+                newPayment = { ...newPayment, [key]: req.body[key] };
+            }
+        });
+        const result = await userModel.modifyUserPayment(newPayment);
+        return res.status(200).json(result);
+        //@ts-ignore
+    } catch (err: Error) {
+        return res.status(400).json({ message: err.message });
     }
 });
 
@@ -191,12 +231,44 @@ usersRouter.delete('/:id', async (req: Request, res: Response) => {
         const id = parseInt(req.params.id);
         const result = await userModel.deleteUser(id);
         if (!result) {
-            throw new Error(`Could not find user ${id}`);
+            return res
+                .status(404)
+                .json({ message: `Could not find user ${id}` });
         }
-        res.status(200).json(result);
+        return res.status(200).json(result);
         //@ts-ignore
     } catch (err: Error) {
-        res.status(404).json({ message: err.message });
+        return res.status(400).json({ message: err.message });
+    }
+});
+usersRouter.delete('/user_address/:id', async (req: Request, res: Response) => {
+    try {
+        const id = parseInt(req.params.id);
+        const result = await userModel.deleteUserAddress(id);
+        if (!result) {
+            return res
+                .status(404)
+                .json({ message: `Could not find address ${id}` });
+        }
+        return res.status(200).json(result);
+        //@ts-ignore
+    } catch (err: Error) {
+        return res.status(400).json({ message: err.message });
+    }
+});
+usersRouter.delete('/user_payment/:id', async (req: Request, res: Response) => {
+    try {
+        const id = parseInt(req.params.id);
+        const result = await userModel.deleteUserPayment(id);
+        if (!result) {
+            return res
+                .status(404)
+                .json({ message: `Could not find payment ${id}` });
+        }
+        return res.status(200).json(result);
+        //@ts-ignore
+    } catch (err: Error) {
+        return res.status(400).json({ message: err.message });
     }
 });
 

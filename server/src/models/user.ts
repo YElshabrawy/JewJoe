@@ -38,16 +38,26 @@ export class UserModel {
         return performSQL(sql);
     }
     async getUser(id: number) {
-        const sql = `SELECT * from "user" WHERE id=${id};`;
+        const sql = `SELECT * from "user" WHERE id=${id} ORDER BY id ASC;`;
         return performSQL(sql, undefined, true);
     }
+
     async getUserPayments(id: number) {
-        const sql = `SELECT * from "user_payment" WHERE user_id = ${id}`;
+        const sql = `SELECT * from "user_payment" WHERE user_id = ${id} ORDER BY id ASC;`;
         return performSQL(sql);
     }
+    async getPayment(id: number) {
+        const sql = `SELECT * from "user_payment" WHERE id = ${id} ORDER BY id ASC`;
+        return performSQL(sql, undefined, true);
+    }
+
     async getUserAddresses(id: number) {
-        const sql = `SELECT * from "user_address" WHERE user_id = ${id}`;
+        const sql = `SELECT * from "user_address" WHERE user_id = ${id} ORDER BY id ASC`;
         return performSQL(sql);
+    }
+    async getAddress(id: number) {
+        const sql = `SELECT * from "user_address" WHERE id = ${id} ORDER BY id ASC`;
+        return performSQL(sql, undefined, true);
     }
 
     // Create
