@@ -1,4 +1,5 @@
-import { QueryResult } from 'pg';
+import { Response } from 'express';
+
 import client from '../database';
 
 const performSQL = async (
@@ -19,5 +20,11 @@ const performSQL = async (
         throw new Error(`[Database] Error: ${err}`);
     }
 };
+
+// export function checkResult(res: Response, result: any, message: string) {
+//     if (!result || result?.length === 0) {
+//         return res.status(404).json({ message });
+//     }
+// }
 
 export default performSQL;

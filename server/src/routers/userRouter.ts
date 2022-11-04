@@ -7,7 +7,7 @@ const userModel = new UserModel();
 
 // Get
 // User
-usersRouter.get('/', async (req: Request, res: Response) => {
+usersRouter.get('/', async (_req: Request, res: Response) => {
     try {
         const result = await userModel.getAllUsers();
         if (!result || result?.length === 0) {
@@ -92,11 +92,11 @@ usersRouter.post('/', async (req: Request, res: Response) => {
         };
 
         const result = await userModel.createUser(u);
-        res.status(200).json(result);
+        return res.status(200).json(result);
 
         //@ts-ignore
     } catch (err: Error) {
-        res.status(400).json({ message: err.message });
+        return res.status(400).json({ message: err.message });
     }
 });
 // User payment
@@ -241,6 +241,7 @@ usersRouter.delete('/:id', async (req: Request, res: Response) => {
         return res.status(400).json({ message: err.message });
     }
 });
+
 usersRouter.delete('/user_address/:id', async (req: Request, res: Response) => {
     try {
         const id = parseInt(req.params.id);
@@ -256,6 +257,7 @@ usersRouter.delete('/user_address/:id', async (req: Request, res: Response) => {
         return res.status(400).json({ message: err.message });
     }
 });
+
 usersRouter.delete('/user_payment/:id', async (req: Request, res: Response) => {
     try {
         const id = parseInt(req.params.id);
