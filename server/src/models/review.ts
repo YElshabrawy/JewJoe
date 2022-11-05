@@ -10,6 +10,10 @@ export type Review = {
 
 export class ReviewModel {
     // Get
+    async getAllReviews() {
+        const sql = `SELECT * from "review" ORDER BY id ASC;`;
+        return performSQL(sql);
+    }
     async getReview(id: number) {
         const sql = `SELECT * from "review" WHERE id=${id} ORDER BY id ASC;`;
         return performSQL(sql, undefined, true);
