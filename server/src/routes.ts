@@ -8,6 +8,7 @@ import productRouter from './routers/productRouter';
 import discountRouter from './routers/discountRouter';
 import cartRouter from './routers/cartRouter';
 import reviewRouter from './routers/reviewRouter';
+import orderRouter from './routers/orderRouter';
 
 export default (app: express.Application) => {
     app.use(bodyParser.json());
@@ -19,4 +20,5 @@ export default (app: express.Application) => {
     app.use('/discount', discountRouter);
     app.use('/cart', cartRouter);
     app.use('/review', reviewRouter);
+    app.use('/order', orderRouter);
 };

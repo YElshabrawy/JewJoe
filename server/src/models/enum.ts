@@ -10,6 +10,11 @@ export type ProductCategory = {
     name: string;
 };
 
+export type OrderStatus = {
+    id?: number;
+    status: string;
+};
+
 export class EnumModel {
     // PaymentType
     async getAllPaymentTypes() {
@@ -44,6 +49,28 @@ export class EnumModel {
     }
     async deleteProductCategory(id: number) {
         const sql = `DELETE FROM "product_category" WHERE id=${id} RETURNING *;`;
+        return performSQL(sql, undefined, true);
+    }
+
+    // OrderStatus
+    async getAllOrderStats() {
+        const sql = `SELECT * FROM "order_status" ORDER BY id ASC;`;
+        return performSQL(sql);
+    }
+    async getOrderStat(id: number) {
+        const sql = `SELECT * FROM "order_status" WHERE id=${id} ORDER BY id ASC;`;
+        return performSQL(sql, undefined, true);
+    }
+    async createOrderStat(u: OrderStatus) {
+        const sql = `INSERT INTO "order_status" (status) VALUES ($1) RETURNING *;`;
+        return performSQL(sql, [u.status], true);
+    }
+    async updateOrderStat(u: OrderStatus) {
+        const sql = `UPDATE "order_status" SET status=$1 WHERE id=$2 RETURNING *;`;
+        return performSQL(sql, [u.status, u.id], true);
+    }
+    async deleteOrderStat(id: number) {
+        const sql = `DELETE FROM "order_status" WHERE id=${id} RETURNING *;`;
         return performSQL(sql, undefined, true);
     }
 }
