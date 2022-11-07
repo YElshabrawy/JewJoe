@@ -12,27 +12,27 @@ module.exports = {
             },
             fontSize: {
                 h1: [
-                    '33px',
+                    '37px',
                     {
                         fontWeight: '500',
                     },
                 ],
                 h2: [
-                    '26px',
+                    '30px',
                     {
                         fontWeight: '400',
                         lineHeight: '35px',
                     },
                 ],
                 h3: [
-                    '20px',
+                    '24px',
                     {
                         fontWeight: '400',
                         lineHeight: '26px',
                     },
                 ],
                 h4: [
-                    '20px',
+                    '24px',
                     {
                         fontWeight: '500',
                         lineHeight: '20px',
@@ -47,25 +47,29 @@ module.exports = {
                     },
                 ],
                 Bl: [
-                    '16px',
+                    '20px',
                     {
                         fontWeight: '700',
                     },
                 ],
                 Bm: [
-                    '14px',
+                    '18px',
                     {
                         fontWeight: '400',
                     },
                 ],
                 Bs: [
-                    '12px',
+                    '16px',
                     {
                         fontWeight: '400',
                         lineHeight: '20px',
-                        letterSpacing: '10px',
+                        // letterSpacing: '10px',
                     },
                 ],
+            },
+            screens: {
+                md: '820px',
+                // => @media (min-width: 820px) { ... }
             },
         },
     },

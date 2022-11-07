@@ -21,7 +21,7 @@ const NavBar = () => {
         );
     });
     return (
-        <nav className="p-4 md:flex md:items-center md:justify-between">
+        <nav className="md:flex md:items-center md:justify-between">
             {/* Logo and icons */}
             <div className="flex justify-between items-center">
                 {/* logo */}
