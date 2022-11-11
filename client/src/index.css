@@ -6,6 +6,12 @@
     html {
         font-family: 'DM Sans', sans-serif;
     }
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+        outline: none;
+    }
 }
 
 @responsive {
