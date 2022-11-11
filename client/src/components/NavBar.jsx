@@ -5,7 +5,7 @@ import Search from './Search';
 // Icons
 import CartIcon from './Icons/CartIcon';
 import SearchIcon from './Icons/SearchIcon';
-import Profile from './Icons/Profile';
+import ProfileIcon from './Icons/ProfileIcon';
 
 const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +61,7 @@ const NavBar = () => {
                         <CartIcon items={2} />
                     </button>
                     <button className="w-5 text-3xl ml-10">
-                        <Profile />
+                        <ProfileIcon />
                     </button>
                 </div>
             </div>
