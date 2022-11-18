@@ -7,7 +7,7 @@ import CartIcon from './Icons/CartIcon';
 import SearchIcon from './Icons/SearchIcon';
 import ProfileIcon from './Icons/ProfileIcon';
 
-const NavBar = () => {
+const NavBar = ({ withoutSearch = false }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const navItems = ['Shop', 'Blog', 'Our Story'].map((item, i) => {
@@ -30,7 +30,7 @@ const NavBar = () => {
                 <div className="md:hidden -mr-2 flex items-center">
                     {/* Cart */}
                     <button className="text-3xl text-black mr-4">
-                        <CartIcon items={0} />
+                        <CartIcon items={2} />
                     </button>
 
                     {/* Hamburger */}
@@ -66,7 +66,7 @@ const NavBar = () => {
                 </div>
             </div>
             {/* Search Bar */}
-            <Search />
+            {!withoutSearch ? <Search /> : null}
         </nav>
     );
 };

@@ -5,7 +5,7 @@ import ShopLatest from '../components/ShopLatest';
 
 const Home = () => {
     return (
-        <div className="p-4 md:w-[90%] md:mx-auto">
+        <div className="">
             <NavBar />
             <Carousel />
             <ShopLatest />

@@ -12,6 +12,14 @@
     button:focus {
         outline: none;
     }
+
+    .white-btn {
+        @apply border-black py-2 text-Bs border-[1.5px] rounded-md hover:text-white hover:bg-black;
+    }
+
+    .divider {
+        @apply border-t border-my_gray my-5;
+    }
 }
 
 @responsive {
